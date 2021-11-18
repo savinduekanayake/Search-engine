@@ -50,6 +50,6 @@ Dataset contains the all the parliment ministers scraped from this [website](htt
 * `IR/app` - contain both backend and frontend of the Search Engine.
 * `IR/app/templates` - contains the User interface templates.
 * `IR/app/data` - contains the dataset.
-* `app.py` - contains the code to run the search engine server.
+* `IR/app/app.py` - contains the code to run the search engine server.
 * `crawler` - contains the scrapped ministers coprus and the scrapping code.
 
