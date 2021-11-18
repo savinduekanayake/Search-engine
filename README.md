@@ -36,7 +36,7 @@ Dataset contains the all the parliment ministers scraped from this [website](htt
 * Party
 * District
 * Overall rank
-* No. of time participated in parliment
+* Number of time participated in parliment
 * Related subjects
 * Terms in parliment
 * Biography
