@@ -44,7 +44,6 @@ Dataset contains the all the parliment ministers scraped from this [website](htt
 
 ## Directory Structure
 
-* `crawler` - contains the scrapped ministers coprus and the scrapping code.
 * `IR` - contain all the project files.
 * `IR/Scripts` - contain the relavent envirenment files and scripts.
 * `IR/docker-compose.yml` - contain the docker file.
@@ -52,5 +51,5 @@ Dataset contains the all the parliment ministers scraped from this [website](htt
 * `IR/app/templates` - contains the User interface templates.
 * `IR/app/data` - contains the dataset.
 * `app.py` - contains the code to run the search engine server.
-
+* `crawler` - contains the scrapped ministers coprus and the scrapping code.
 
