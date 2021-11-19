@@ -1,5 +1,5 @@
 from flask import Flask,render_template,url_for,request,jsonify
-from search import search, search_bio
+from search import search
 
 app = Flask(__name__)
 

@@ -8,28 +8,33 @@ from helper import calSimilarity_words
 client = Elasticsearch(HOST="http://localhost",PORT=9200)
 INDEX = 'index-ministers'
 
-def stemmer(word):
-    stem_dict = {"ගේ$":"","^(සිටි||හිටි).$":"සිටි"}
+#function for stemming the word
+def stemming(word):
+    stem_dictionary = {"ගේ$":"","^(සිටි||හිටි).$":"සිටි"}
     stemmed = word
-    for k in stem_dict:
-      stemmed = re.sub(k,stem_dict[k],stemmed)
+    for k in stem_dictionary:
+      stemmed = re.sub(k,stem_dictionary[k],stemmed)
     return stemmed
 
+
+#function for pre-processing the phase
 def preprocess(phrase):
-    phrase_l = phrase.split()
+    phrase_list = phrase.split()
     processed_phrase = []
-    for word in phrase_l:
+
+    for word in phrase_list:
       stemmed_word = word
       if not word.isdigit():
-        stemmed_word = stemmer(word)
+        stemmed_word = stemming(word)
       if stemmed_word not in stop_words:
         processed_phrase.append(stemmed_word)
+
     processed_s = " ".join(processed_phrase)
     return processed_s
 
+
+#boosting function
 def boost(boost_array):
-    # views is not taken for search
-    
     name ="name^{}".format(boost_array[1])
     position = "position^{}".format(boost_array[2])
     party = "party^{}".format(boost_array[3])
@@ -39,40 +44,24 @@ def boost(boost_array):
     
     return [name, position, party, district, related_subjects, biography]
 
+
+#function for search using the name
 def searchByName(tokens):
-  c = 0
+  found = 0
   for t in range(len(tokens)):
     token = tokens[t]
+
     for name in names:
-      namel = name.split()
-      for i in range(len(namel)):
-        if calSimilarity_words(token, namel[i], 0.8) and abs(len(token)-len(namel[i])) <= 1:
-            tokens.append(namel[i])
-            c = 1
-  if c:
+      name_list = name.split()
+      for i in range(len(name_list)):
+        if calSimilarity_words(token, name_list[i], 0.8) and abs(len(token)-len(name_list[i])) <= 1:
+            tokens.append(name_list[i])
+            found = 1
+  if found:
     return True
   else:
     return False
 
-def search_bio(phrase):
-    flags = [0, 1, 1, 1, 1, 1, 5]
-    fields = boost(flags)
-    tokens = phrase.split()
-    for t in range(len(tokens)):
-      token = tokens[t]
-      for p in bio_list:
-        if calSimilarity_words(token, p, 0.8):
-          tokens.append(p)
-    phrase = " ".join(tokens)
-    query_body = queries.agg_multi_match_q(phrase, fields, operator='or')
-    print('Making Faceted Query')
-    res = client.search(index=INDEX, body=query_body)
-    resl = res['hits']['hits']
-    outputl = []
-    for hit in resl:
-      outputl.append([hit['_source']['name'],hit['_source']['biography'],hit['_score']])
-    res = outputl 
-    return res
 
 def search(phrase):
     # 0 - number
@@ -108,17 +97,18 @@ def search(phrase):
             print('Boosting field', i, 'for', word, 'in synonym list - search by name')
             search_list[i] = 1
             break
+
     elif containsDigit: #check number
       popularity = False
       participation = False
       before_birth = False
+
       for word in tokens:
         if word.isdigit():
           flags[0] = 1
           num = int(word)
           if(len(word) == 4):
             before_birth = True
-
         else:
           if word in syn_popularity:
                 popularity = True
@@ -129,7 +119,8 @@ def search(phrase):
                   op = 'gte'
                 elif word in lte:
                   op = 'lte'
-    else: #not name or a digit
+
+    else: #not name or not a digit
       # Identify numbers
       search_terms = []
       for w in range(len(tokens)):
@@ -154,39 +145,14 @@ def search(phrase):
                   print('Boosting field', i, 'for', word, 'in synonym list')
                   flags[i+2] = 5
 
-          # Check whether full phrase is in any list - NEED THIS?
-          # for i in range(2, 9):
-          #     if phrase in all_lists[i]:
-          #         print('Boosting field', i, 'for', phrase, 'in all list')
-          #         flags[i] = 5
       tokens = search_terms
-
     fields = boost(flags)
 
-    # If the query contain a number call sort query
+
     phrase = " ".join(tokens)
     print(phrase, fields, search_list)
 
-
-
-
-    if flags[1] == 5:
-        if search_list.count(1) > 0: #name with the party or distric ....
-            required_field = fields_ori[search_list.index(1)]
-            print("exact match with "+required_field)
-            query_body = queries.exact_match(phrase, required_field)
-            res = client.search(index=INDEX, body=query_body)
-            resl = res['hits']['hits']
-            outputl = []
-            for hit in resl:
-              ansl = hit["fields"][required_field]
-              if (len(ansl) > 1):
-                out = " ; ".join(ansl)
-              else:
-                out = ansl[0]
-              outputl.append([hit['_source']['name']+" - "+ str(out),hit['_score']])
-            res = outputl 
-        else: #only name
+    if flags[1] == 5: #if have a name
             query_body = queries.exact_match(phrase)
             res = client.search(index=INDEX, body=query_body)
             resl = res['hits']['hits']
@@ -205,7 +171,7 @@ def search(phrase):
               biography = minister["biography"]
               outputl.append([name, position, party, district, contact, related_subjects, biography])
             res = outputl
-    elif flags[0] == 1: #number ekak thiyenawa nam
+    elif flags[0] == 1: #If there is a number
         if popularity:
           print('Making Range Query for popularity')
           query_body = queries.agg_multi_match_and_sort_q(phrase, num, fields)
@@ -240,7 +206,6 @@ def search(phrase):
               outputl.append(hit['_source']['name'] )
           res = outputl 
     else:
-
         if(flags.count(5) == 2):
           required_field2 = ["biography","district"]
           query_body = queries.cross_q(phrase,required_field2)
@@ -250,7 +215,6 @@ def search(phrase):
           for hit in resl:
               outputl.append(hit['_source']['name'] )
           res = outputl 
-
         else:
           print('Making Faceted Query') #no name and other field search
           query_body = queries.agg_multi_match_q(phrase, fields)
