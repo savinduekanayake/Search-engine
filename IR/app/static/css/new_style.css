@@ -2,7 +2,7 @@ body
 {
     background-color: #F0F0F0;
     font-size:large;
-    background-image: url("https://www.focus2move.com/wp-content/uploads/2020/08/Tesla-Roadster-2020-1024-03.jpg");
+    /* background-image: url("https://www.focus2move.com/wp-content/uploads/2020/08/Tesla-Roadster-2020-1024-03.jpg"); */
     background-repeat: no-repeat;
 }
 .container
@@ -24,6 +24,6 @@ body
     font-size: 15px;
 }
 
-.well-lg {
+/* .well-lg {
     color: royalblue;
-}
+} */

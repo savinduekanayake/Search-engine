@@ -19,24 +19,23 @@
 <body>
 	<div class="container-fluid" style='background-image: url("https://www.tamilguardian.com/sites/default/files/Image/pictures/2018/Sri%20Lanka%20govt/parliament%20reconvenes.jpg"); min-height: 650px;' >
 		<div class="container" >
-			<div class="row" >
-				<div class="well well-lg" >
-					<h1 style='text-align: center; background: url("https://lh3.googleusercontent.com/proxy/y0wY5CmyADZ14xyuvMFbrZDl57_gzyn-SZekJSKVqfaFWj8yJMP5hl-6YeHiPrU_4TANY_PTGNFDgk-ZEXU44XuF_OtgnYg-44GW9A9pfr4pPn_UtSRY_XOP6Q");' class="list-group-item-heading">ශ්‍රී ලංකා පාර්ලිමේන්තු මන්ත්‍රීවරු</h1>
+			<div class="row" style="min-height: 220px;" >
+				<div class='well well-lg'> 
+					<h1 style='text-align: center; background: url("https://st2.depositphotos.com/3053041/11886/i/950/depositphotos_118861326-stock-photo-brown-crumpled-paper-texture.jpg"); color: black;' class="list-group-item-heading">ශ්‍රී ලංකා පාර්ලිමේන්තු මන්ත්‍රීවරු</h1>
 				</div>
+
+				
 				<div class="search">
 					
-
 					<form style="text-align: center; border-radius: 25px;" action="{{ url_for('predictTokens')}}" method="POST">
-
-
 
 						<div style="padding-top: 2%;" class="form-group">
 							<div style="justify-content: center;" class="row">
 								<div class="col-lg-10">
-									<div class="input-group">
+									<div class="input-group" style="padding-left: 20px;">
 									  <input  type="text" class="form-control" placeholder="ඔබගේ සෙවුම් විමසුම ඇතුලත් කරන්න" id="message" name="message">
 									  <span class="input-group-btn">
-										<button  class="btn btn-default" type="submit">සොයන්න!</button>
+										<button class="btn btn-default" type="submit">සොයන්න!</button>
 									  </span>
 									</div><!-- /input-group -->
 								  </div><!-- /.col-lg-6 -->
@@ -44,6 +43,8 @@
 
 						</div>					
 					</form>
+
+
 				</div>
 
 				<br>
