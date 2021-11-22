@@ -3,7 +3,6 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from lists import names
 
-# search = "කුලසිංහම් දිලීපන් මහතාගේ තනතුර"
 def calSimilarity(search):
     search_term_list = search.split()
     name_terms = []

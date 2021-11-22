@@ -1,37 +1,13 @@
 # PROCESSING
 import re
-from lists import stop_words, synonym_list, syn_popularity, times, gte, lte, all_lists, fields_ori, names, bio_list
-from elasticsearch import Elasticsearch, helpers
 import queries
 from helper import calSimilarity_words
+from lists import stop_words, synonym_list, syn_popularity, times, gte, lte, all_lists, fields_ori, names, bio_list
+from elasticsearch import Elasticsearch, helpers
+from preprocessing import preprocess
 
 client = Elasticsearch(HOST="http://localhost",PORT=9200)
 INDEX = 'index-ministers'
-
-#function for stemming the word
-def stemming(word):
-    stem_dictionary = {"ගේ$":"","^(සිටි||හිටි).$":"සිටි"}
-    stemmed = word
-    for k in stem_dictionary:
-      stemmed = re.sub(k,stem_dictionary[k],stemmed)
-    return stemmed
-
-
-#function for pre-processing the phase
-def preprocess(phrase):
-    phrase_list = phrase.split()
-    processed_phrase = []
-
-    for word in phrase_list:
-      stemmed_word = word
-      if not word.isdigit():
-        stemmed_word = stemming(word)
-      if stemmed_word not in stop_words:
-        processed_phrase.append(stemmed_word)
-
-    processed_s = " ".join(processed_phrase)
-    return processed_s
-
 
 #boosting function
 def boost(boost_array):
@@ -120,7 +96,7 @@ def search(phrase):
                 elif word in lte:
                   op = 'lte'
 
-    else: #not name or not a digit
+    else: #Not a name or not a digit
       # Identify numbers
       search_terms = []
       for w in range(len(tokens)):
@@ -152,6 +128,7 @@ def search(phrase):
     phrase = " ".join(tokens)
     print(phrase, fields, search_list)
 
+    #Quering elasticsearch 
     if flags[1] == 5: #if have a name
             query_body = queries.exact_match(phrase)
             res = client.search(index=INDEX, body=query_body)
@@ -232,3 +209,4 @@ def search(phrase):
               # outputl.append([hit['_source']['name'],hit['_score']])
           res = outputl 
     return res
+
