@@ -3,7 +3,7 @@
 ![parliment](https://user-images.githubusercontent.com/47809365/142301933-49477a6e-2c0f-457a-b139-f154275c7ab9.JPG)
 
 
-## Parliment Ministers search engine using Sinhala language
+## parliament Ministers search engine using Sinhala language
 
 * `search by name` : ජී. එල්. පීරිස් මහතා
 * `search by party` : ශ්‍රී ලංකා පොදුජන පෙරමුණනේ මන්නීවරුන්
@@ -25,7 +25,7 @@
 
 ## Data
 
-Dataset contains the all the parliment ministers scraped from this [website](http://www.manthri.lk/si/politicians). 
+Dataset contains the all the parliament ministers scraped from this [website](http://www.manthri.lk/si/politicians). 
 
 * Name
 * Gender
@@ -36,9 +36,9 @@ Dataset contains the all the parliment ministers scraped from this [website](htt
 * Party
 * District
 * Overall rank
-* Number of time participated in parliment
+* Number of time participated in parliament
 * Related subjects
-* Terms in parliment
+* Terms in parliament
 * Biography
 * Contact informations
 
