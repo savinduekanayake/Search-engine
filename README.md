@@ -1,4 +1,4 @@
-# Search Engine - Ministers
+# Search Engine - Ministers of Parliament
 
 ![parliment](https://user-images.githubusercontent.com/47809365/142301933-49477a6e-2c0f-457a-b139-f154275c7ab9.JPG)
 
