@@ -5,13 +5,13 @@
 
 ## parliament Ministers search engine using Sinhala language
 
-* `search by name` : ජී. එල්. පීරිස් මහතා
-* `search by party` : ශ්‍රී ලංකා පොදුජන පෙරමුණනේ මන්නීවරුන්
-* `search by district` : මාතර දිස්ික්කය ිපයෝජනය කරන මන්නීවරු
-* `search by related subject` : අධ්යාපනයට සම්බන්ධ මන්ත්රීවරු
-* `search by overall rank` : හොදම 10 මන්නීවරුන්
+* `search by name` : ජී. එල්. පීරිස් මහතාගේ විස්තර මොනවාද?
+* `search by party` : ශ්‍රී ලංකා පොදුජන පෙරමුණනේ මන්නීවරුන් කවුද?
+* `search by district` : මාතර දිස්තික්කය නියෝජනය කරන මන්නීවරු කවුරුන්ද?
+* `search by related subject` : අධ්යාපනයට සම්බන්ධ මන්ත්රීවරු කවුරුන්ද?
+* `search by overall rank` : හොදම මන්නීවරුන් 10 කවුද?
 * `search by participated_in_parliament` : 5 වාරගනනක් පාර්ලිමේන්තුවට සහබාගීවුන මන්නීවරුන්
-* `search by bio` : මාතර දිස්ික්කපයන්න ශ්‍රී ලංකා පොදුජන පෙරමුණ ෙක්ෂය යටපත්
+* `search by bio` : මාතර දිස්ික්කපයන්න ශ්‍රී ලංකා පොදුජන පෙරමුණ ෙක්ෂය යටතේ 
 
 ## Quickstart
 
