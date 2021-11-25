@@ -31,6 +31,11 @@ Dataset contains the all the parliament ministers scraped from this [website](ht
 * `search by participated_in_parliament` : 5 වාරගනනක් පාර්ලිමේන්තුවට සහබාගීවුන මන්නීවරුන්
 * `search by bio` : මාතර දිස්ික්කපයන්න ශ්‍රී ලංකා පොදුජන පෙරමුණ ෙක්ෂය යටතේ 
 
+## Flow 
+
+![abc2](https://user-images.githubusercontent.com/47809365/143378758-02ab56f2-6f2c-4c41-8b42-b0f57fb6bcf1.jpg)
+
+
 ## Quickstart
 
 * Download the repo
