@@ -39,7 +39,7 @@ Dataset contains the all the parliament ministers scraped from this [website](ht
 ## Quickstart
 
 * Download the repo
-* Run the activate.bat file in the IR/Scripts folder.
+* Create a envirenment and run the activate.bat file in the IR/Scripts folder.
 * Run the docker-compose.yml file in the IR folder.
 * Run upload_crawled_data.py file in IR/app folder to create index.
 * Finally go to the IR/app folder and run the file using 'flask run'.
