@@ -36,6 +36,13 @@ Dataset contains the all the parliament ministers scraped from this [website](ht
 ![abc2](https://user-images.githubusercontent.com/47809365/143378758-02ab56f2-6f2c-4c41-8b42-b0f57fb6bcf1.jpg)
 
 
+## Query techniques used
+* Rule based intent classification – Different rules for identify the intention of the user
+query with which type of search. (e.g.- maintain a synonym, stop word lists)
+* Boosting technique – For query optimizing 
+* Use cosine similarity identify misspellings
+
+
 ## Quickstart
 
 * Download the repo
